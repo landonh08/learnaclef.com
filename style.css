@@ -1,45 +1,34 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap');
+
 * {
-    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
-}
-*, *::before, *::after {
+    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
     background-color: rgb(243, 242, 249);
 }
 
 canvas {
-    box-shadow: 0px 5px 10px rgb(200,200,200);
+    box-shadow: 0px 5px 10px rgb(200, 200, 200);
     margin: 2rem;
     border-radius: 2rem;
 }
 
-button {
-    cursor: pointer;
-}
-
-label {
-    cursor: pointer;
-}
-
-input {
+button, label, input {
     cursor: pointer;
 }
 
 header {
     background-color: white;
-    margin-top: 0px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-bottom: .2rem;
+    margin-bottom: 0.2rem;
     padding-left: 1rem;
-    border: .2rem solid lightgray;
+    border: 0.2rem solid lightgray;
     border-radius: 16px;
-    box-shadow: 0px 5px 10px rgb(200,200,200);
+    box-shadow: 0px 5px 10px rgb(200, 200, 200);
     display: flex;
     align-items: center;
 }
@@ -48,9 +37,7 @@ header h1 {
     display: inline-block;
 }
 
-
 header div {
-    /* border: 1px solid green; */
     display: inline-block;
     width: max-content;
     height: max-content;
@@ -58,8 +45,8 @@ header div {
 }
 
 .blue {
-    color:rgb(169, 235, 255);
-    text-decoration: bold;
+    color: rgb(169, 235, 255);
+    font-weight: bold;
 }
 
 .hidden {
@@ -77,13 +64,13 @@ header div {
 
 .content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
 }
 
 .settings input {
-    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
     accent-color: black;
 }
 
@@ -94,7 +81,7 @@ header div {
 .radio-image img {
     width: 5rem;
     height: 8rem;
-    margin: .5rem;  
+    margin: 0.5rem;  
 }
 
 .two-radio label {
@@ -112,20 +99,19 @@ header div {
     transform: translateX(-100%);
     transition: transform 0.3s ease;
     z-index: 10;
-    box-shadow: 0px 5px 10px rgba(200,200,200.1);
+    box-shadow: 0px 5px 10px rgba(200, 200, 200, 0.1);
 }
 
 .custom-button {
-    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 1rem;
-    border-color: hsl(249, 37%, 100%);
+    border: 2px solid hsl(249, 37%, 100%);
     font-size: 1.5rem;
     min-height: fit-content;
     min-width: fit-content;
     background-color: inherit;
-    border-width: 2px;
-    transition: background-color, border-color, box-shadow .2s ease;
     box-shadow: 0px 5px 10px rgb(200,200,200);
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .custom-button:hover {
@@ -135,16 +121,16 @@ header div {
 .custom-button:active {
     background-color: rgb(226, 225, 231);
     border-color: rgb(169, 235, 255);
-    box-shadow: 0px 0px 0px rgba(200,200,200, 0);
+    box-shadow: none;
 }
 
 #dropleft {
     display: flex;
     flex-direction: column;
     border: 2px solid lightgray;
-    width: 20dvw;
-    height: 100dvh;
-    max-height: 100dvh;
+    width: 20vw;
+    height: 100vh;
+    max-height: 100vh;
     min-width: fit-content;
     min-height: fit-content;
     background-color: white;
@@ -155,6 +141,7 @@ header div {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: 0;
 }
 
 #byebye button {
@@ -162,14 +149,12 @@ header div {
     height: 25%;
 }
 
-
 #show-settings {
-    /* border: 2px solid red; */
     border: none;
     margin-left: 1rem;
-    padding: 0px;
+    padding: 0;
     background-color: inherit;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
 }
 
 #show-settings:hover {
@@ -181,18 +166,15 @@ header div {
     height: 2.5rem;
 }
 
-#refresh {
+#refresh, #reveal {
     width: 8rem;
     height: 4rem;
 }
 
 #reveal {
-    width: 8rem;
-    height: 4rem;
     background-image: linear-gradient(150deg, rgb(169, 235, 255) 30%, rgb(0, 195, 255));
 }
 
 #reveal:active {
     background-image: linear-gradient(150deg, hsl(194, 100%, 73%) 30%, hsl(194, 100%, 40%));
 }
-
