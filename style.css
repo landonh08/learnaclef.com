@@ -1,11 +1,6 @@
 
-@font-face {
-    font-family: Roboto;
-    src: url(Assets/fonts/Roboto-VariableFont_wdth\,wght.ttf);
-}
-
 * {
-    font-family: Roboto;
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
 }
 *, *::before, *::after {
     box-sizing: border-box;
