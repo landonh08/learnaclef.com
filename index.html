@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="Assets\Images\lacicon.png">
+    <title>Home</title>
+</head>
+<body>
+
+    <header>
+        <h1>Learn-<span class="blue">a</span>-Clef</h1>
+        <button id="show-settings">
+            <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" id="navbar-logo">
+                <path d="M4 17H20M4 12H20M4 7H20" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </header>
+    <nav class="settings-nav">
+        <div id="dropleft">
+            <div class="settings">
+                <h2 class="settings-subtitle">Select Clef</h3>
+                <div class="radio-image">
+                    <input type="radio" name="clef" id="treble">
+                    <label for="treble">
+                        <img src="Assets/Images/treble.png" alt="treble clef">
+                    </label>
+                </div>
+                <div class="radio-image">
+                    <input type="radio" name="clef" id="alto">
+                    <label for="alto">
+                        <img src="Assets/Images/alto.png" alt="alto clef">
+                    </label>
+                </div>
+                <div class="radio-image">
+                    <input type="radio" name="clef" id="tenor">
+                    <label for="tenor">
+                        <img src="Assets/Images/tenor.png" alt="tenor clef">
+                    </label>
+                </div>
+                <div class="radio-image">
+                    <input type="radio" name="clef" id="bass">
+                    <label for="bass">
+                        <img src="Assets/Images/bass.png" alt="bass clef">
+                    </label>
+                </div>
+            </div>
+            <div class="settings two-radio">
+                <h2 class="settings-subtitle">Select Practice Type</h3>
+                <input type="radio" name="pt" id="notes">
+                <label for="notes">Notes</label>
+                <input type="radio" name="pt" id="scales">
+                <label for="scales">Scales</label>
+            </div>
+            <div class="settings two-radio">
+                <h2 class="settings-subtitle">Select Prefix</h3>
+                <input type="radio" name="sf" id="sharp">
+                <label for="sharp">♯ (Sharps)</label>
+                <input type="radio" name="sf" id="flat">
+                <label for="flat">♭ (Flats)</label>
+            </div>
+            <div id="byebye">
+                <button class="custom-button">Save and Continue</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="content">
+        <canvas id="score" width="400" height="200"></canvas>
+        <div>
+            <button id="reveal" class="custom-button">Reveal</button>
+            <button id="refresh" class="custom-button">Generate</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
