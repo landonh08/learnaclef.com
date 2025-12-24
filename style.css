@@ -83,6 +83,7 @@ header div {
 }
 
 .settings input {
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
     accent-color: black;
 }
 
@@ -115,6 +116,7 @@ header div {
 }
 
 .custom-button {
+    font-family: Roboto, Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 1rem;
     border-color: hsl(249, 37%, 100%);
     font-size: 1.5rem;
