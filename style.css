@@ -10,6 +10,9 @@
 
 body {
     background-color: rgb(243, 242, 249);
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
 }
 
 canvas {
@@ -30,7 +33,6 @@ header {
     border-radius: 16px;
     box-shadow: 0px 5px 10px rgb(200, 200, 200);
     display: flex;
-    align-items: center;
 }
 
 header h1 {
@@ -44,6 +46,22 @@ header div {
     border: none;
 }
 
+footer {
+    color: gray;
+    font-size: .8rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer svg {
+    width: 1rem;
+    height: 1rem;
+    margin-left: .2rem;
+    outline: gray;
+}
+
 .blue {
     color: rgb(169, 235, 255);
     font-weight: bold;
@@ -54,12 +72,14 @@ header div {
 }
 
 .settings-subtitle {
-    text-decoration: underline;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: 400;
 }
 
 .settings {
-    padding-left: 1rem;
-    margin-bottom: 1rem;
+    border-bottom: 1px solid lightgray;
+    width: 100%;
 }
 
 .content {
@@ -74,13 +94,27 @@ header div {
     accent-color: black;
 }
 
+.dropdown {
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    display: none;
+    opacity: 0;
+    animation: rise .2s ease;
+}
+
+.revealed {
+    display: block;
+    animation: drop .2s ease;
+    opacity: 1;
+}
+
 .radio-image {
     display: flex;
 }
 
 .radio-image img {
-    width: 5rem;
-    height: 8rem;
+    width: 4rem;
+    height: 6rem;
     margin: 0.5rem;  
 }
 
@@ -88,8 +122,15 @@ header div {
     font-size: 1.2em;
 }
 
-.active {
+.navbar-active {
     transform: translateX(0) !important;
+}
+
+.settings-button {
+    min-width: fit-content;
+    min-height: fit-content;
+    background-color: inherit;
+    border: transparent;
 }
 
 .settings-nav {
@@ -98,14 +139,32 @@ header div {
     left: 0;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
-    z-index: 10;
+    z-index: 11;
     box-shadow: 0px 5px 10px rgba(200, 200, 200, 0.1);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: none;
+  animation: vanish .2s;
+}
+
+.backdrop-active {
+    display: block !important;
+    animation: appear .2s;
+    backdrop-filter: blur(5px);
 }
 
 .custom-button {
     font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 1rem;
-    border: 2px solid hsl(249, 37%, 100%);
+    border: 1px solid hsl(249, 37%, 100%);
     font-size: 1.5rem;
     min-height: fit-content;
     min-width: fit-content;
@@ -115,12 +174,10 @@ header div {
 }
 
 .custom-button:hover {
-    border-color: rgb(169, 235, 255);
+    border-color: lightgray;
 }
 
 .custom-button:active {
-    background-color: rgb(226, 225, 231);
-    border-color: rgb(169, 235, 255);
     box-shadow: none;
 }
 
@@ -139,7 +196,7 @@ header div {
 #byebye {
     flex: 1;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     min-width: 0;
 }
@@ -147,6 +204,9 @@ header div {
 #byebye button {
     width: 75%;
     height: 25%;
+    max-width: 25vh;
+    max-height: 5vh;
+    margin-bottom: 2rem;
 }
 
 #show-settings {
@@ -166,15 +226,65 @@ header div {
     height: 2.5rem;
 }
 
-#refresh, #reveal {
+.content button {
     width: 8rem;
     height: 4rem;
+}
+
+#select-transpose {
+    font-size: 1.2em;
+}
+
+#select-transpose input {
+    text-align: right;
+    font-size: 1rem;
+    padding-right: .5rem;
 }
 
 #reveal {
     background-image: linear-gradient(150deg, rgb(169, 235, 255) 30%, rgb(0, 195, 255));
 }
 
-#reveal:active {
-    background-image: linear-gradient(150deg, hsl(194, 100%, 73%) 30%, hsl(194, 100%, 40%));
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes vanish {
+    from {
+        display: block;
+        opacity: 1;
+    }
+    to {
+        display: none;
+        opacity: 0;
+    }
+}
+
+@keyframes drop {
+    from {
+        transform: translate(0, -1vh);
+        opacity: 0;
+    }
+    to {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes rise {
+    from {
+        transform: translate(0, 0);
+        display: block;
+        opacity: 1;
+    }
+    to {
+        transform: translate(0, -1vh);
+        display: none;
+        opacity: 0;
+    }
 }

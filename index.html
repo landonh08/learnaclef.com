@@ -11,7 +11,7 @@
     <title>Home</title>
 </head>
 <body>
-
+    <div class="backdrop"></div>
     <header>
         <h1>Learn-<span class="blue">a</span>-Clef</h1>
         <button id="show-settings">
@@ -23,48 +23,69 @@
     <nav class="settings-nav">
         <div id="dropleft">
             <div class="settings">
-                <h2 class="settings-subtitle">Select Clef</h3>
-                <div class="radio-image">
-                    <input type="radio" name="clef" id="treble">
-                    <label for="treble">
-                        <img src="Assets/Images/treble.png" alt="treble clef">
-                    </label>
-                </div>
-                <div class="radio-image">
-                    <input type="radio" name="clef" id="alto">
-                    <label for="alto">
-                        <img src="Assets/Images/alto.png" alt="alto clef">
-                    </label>
-                </div>
-                <div class="radio-image">
-                    <input type="radio" name="clef" id="tenor">
-                    <label for="tenor">
-                        <img src="Assets/Images/tenor.png" alt="tenor clef">
-                    </label>
-                </div>
-                <div class="radio-image">
-                    <input type="radio" name="clef" id="bass">
-                    <label for="bass">
-                        <img src="Assets/Images/bass.png" alt="bass clef">
-                    </label>
+                <button class="settings-button" id="clef-options">
+                    <h2 class="settings-subtitle">Clef</h2>
+                </button> 
+                <div class="dropdown" id="select-clef">
+                    <div class="radio-image">
+                        <input type="radio" name="clef" id="treble">
+                        <label for="treble">
+                            <img src="Assets/Images/treble.png" alt="treble clef">
+                        </label>
+                    </div>
+                    <div class="radio-image">
+                        <input type="radio" name="clef" id="alto">
+                        <label for="alto">
+                            <img src="Assets/Images/alto.png" alt="alto clef">
+                        </label>
+                    </div>
+                    <div class="radio-image">
+                        <input type="radio" name="clef" id="tenor">
+                        <label for="tenor">
+                            <img src="Assets/Images/tenor.png" alt="tenor clef">
+                        </label>
+                    </div>
+                    <div class="radio-image">
+                        <input type="radio" name="clef" id="bass">
+                        <label for="bass">
+                            <img src="Assets/Images/bass.png" alt="bass clef">
+                        </label>
+                    </div>
                 </div>
             </div>
             <div class="settings two-radio">
-                <h2 class="settings-subtitle">Select Practice Type</h3>
-                <input type="radio" name="pt" id="notes">
-                <label for="notes">Note</label>
-                <input type="radio" name="pt" id="scales">
-                <label for="scales">Scale</label>
+                <button class="settings-button" id="practice-options">
+                    <h2 class="settings-subtitle">Practice Type</h2>
+                </button>
+                <div class="dropdown" id="select-pt">
+                    <input type="radio" name="pt" id="notes">
+                    <label for="notes">Note</label>
+                    <input type="radio" name="pt" id="scales">
+                    <label for="scales">Scale</label>
+                </div>
             </div>
             <div class="settings two-radio">
-                <h2 class="settings-subtitle">Select Prefix</h3>
-                <input type="radio" name="sf" id="sharp">
-                <label for="sharp">♯ (Sharps)</label>
-                <input type="radio" name="sf" id="flat">
-                <label for="flat">♭ (Flats)</label>
+                <button class="settings-button" id="prefix-options">
+                    <h2 class="settings-subtitle">Prefix</h2>
+                </button>
+                <div class="dropdown" id="select-prefix">
+                    <input type="radio" name="sf" id="sharp">
+                    <label for="sharp">♯ (Sharps)</label>
+                    <input type="radio" name="sf" id="flat">
+                    <label for="flat">♭ (Flats)</label>
+                </div>
+            </div>
+            <div class="settings">
+                <button class="settings-button" id="transpose-options">
+                    <h2 class="settings-subtitle">Transpose</h2>
+                </button>
+                <div class="dropdown" id="select-transpose">
+                    <input type="number", id="tp" placeholder="0", min="-10", max="10">
+                    <label for="tp">Half Steps</label>
+                </div>
             </div>
             <div id="byebye">
-                <button class="custom-button">Save and Continue</button>
+                <button class="custom-button" id="save-and-close">Save and Continue</button>
             </div>
         </div>
     </nav>
@@ -76,6 +97,14 @@
             <button id="refresh" class="custom-button">Generate</button>
         </div>
     </div>
+    <footer>
+        <p>Made by Landon Hardy</p>
+        <a href="https://github.com/landonh08/learnaclef.com/" target="_blank">
+            <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.475 2 2 6.475 2 12C2 16.425 4.8625 20.1625 8.8375 21.4875C9.3375 21.575 9.525 21.275 9.525 21.0125C9.525 20.775 9.5125 19.9875 9.5125 19.15C7 19.6125 6.35 18.5375 6.15 17.975C6.0375 17.6875 5.55 16.8 5.125 16.5625C4.775 16.375 4.275 15.9125 5.1125 15.9C5.9 15.8875 6.4625 16.625 6.65 16.925C7.55 18.4375 8.9875 18.0125 9.5625 17.75C9.65 17.1 9.9125 16.6625 10.2 16.4125C7.975 16.1625 5.65 15.3 5.65 11.475C5.65 10.3875 6.0375 9.4875 6.675 8.7875C6.575 8.5375 6.225 7.5125 6.775 6.1375C6.775 6.1375 7.6125 5.875 9.525 7.1625C10.325 6.9375 11.175 6.825 12.025 6.825C12.875 6.825 13.725 6.9375 14.525 7.1625C16.4375 5.8625 17.275 6.1375 17.275 6.1375C17.825 7.5125 17.475 8.5375 17.375 8.7875C18.0125 9.4875 18.4 10.375 18.4 11.475C18.4 15.3125 16.0625 16.1625 13.8375 16.4125C14.2 16.725 14.5125 17.325 14.5125 18.2625C14.5125 19.6 14.5 20.675 14.5 21.0125C14.5 21.275 14.6875 21.5875 15.1875 21.4875C17.1727 20.8173 18.8977 19.5415 20.1198 17.8395C21.3419 16.1376 21.9995 14.0953 22 12C22 6.475 17.525 2 12 2Z" stroke="#000000" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </footer>
 
     <script src="canvas.js"></script>
     <script src="ui.js"></script>

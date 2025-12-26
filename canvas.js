@@ -1,12 +1,15 @@
 let imagesLoaded = 0; 
 const totalImages = 7; 
 
-const closeButton = document.getElementById('byebye'); 
+const navEle = document.querySelector('.settings-nav'); 
+const backdropEle = document.querySelector(".backdrop");
+const closeButton = document.getElementById('save-and-close'); 
 const refreshButton = document.getElementById('refresh'); 
 const revealButton = document.getElementById('reveal'); 
 const clefs = document.getElementsByName('clef'); 
 const practiceTypes = document.getElementsByName('pt'); 
-const prefixTypes = document.getElementsByName('sf'); 
+const prefixTypes = document.getElementsByName('sf');
+const halfStepCounter = document.getElementById('tp'); 
 
 const trebleImg = new Image(); 
 trebleImg.src = "Assets/Images/treble-clear.png"; 
@@ -47,7 +50,8 @@ var notePositions = new Map();
 
 let pracClef = clefInfo.get(0); 
 let pracType = 0; 
-let pracPrefix = 0; 
+let pracPrefix = 0;
+let pracTranspose = 0; 
 
 var note; 
 var notesOnScreen = []
@@ -118,7 +122,7 @@ function generateNote(newKey = false) {
 } 
 
 function drawNote(x, nt, forcedPrefix = pracPrefix) {
-    notesOnScreen.push({x: x, nt, nt});
+    notesOnScreen.push({x: x, nt: nt});
     let basis = notePositions.get(nt); 
     let noteY = 50 + basis * 10; // 50: two ledger lines above the staff | 10: space between possible notes 
     let prefix = nothingImg;
@@ -206,11 +210,17 @@ closeButton.onclick = function() {
         if (prefixTypes[i].checked) { 
             pracPrefix = i; 
         } 
-    } 
+    }
+
+    let numValue = halfStepCounter.valueAsNumber;
+    pracTranspose = (isNaN(numValue)) ? 0 : numValue;
+    
+
     draw();
     generateNotesInClef();
     generateNote(true);
-    navEl.classList.remove('active'); 
+    navEle.classList.remove('navbar-active');
+    backdropEle.classList.remove('backdrop-active');  
 }; 
 
 refreshButton.onclick = function() { 
@@ -222,14 +232,18 @@ revealButton.onclick = function() {
     ctx.font = "20px Roboto"; 
      for (let i = 0; i < notesOnScreen.length; i++) {
         let {x, nt} = notesOnScreen[i];
-        let noteName = nt.replace(/[0-9]/g, '').toUpperCase();
-        if (noteName.length == 2) {
+        let noteName = nt.replace(/[0-9]/g, '');
+        let new_index = (ALL_NOTE_NAMES.indexOf(noteName)+pracTranspose)%(ALL_NOTE_NAMES.length-1)
+        new_index = (new_index >= 0) ? new_index : 11+new_index;
+        let transposedNote = ALL_NOTE_NAMES[new_index].toUpperCase();
+        console.log(transposedNote, new_index);
+        if (transposedNote.length == 2) {
             if (pracPrefix == 0) {
-                noteName = noteName.slice(0, 1) + "♯"; 
+                transposedNote = transposedNote.slice(0, 1) + "♯"; 
             } else {
-                noteName = noteName.slice(1, 2) + "♭"; 
+                transposedNote = transposedNote.slice(1, 2) + "♭"; 
             }
         }
-        ctx.fillText(noteName, x+10, 230); 
+        ctx.fillText(transposedNote, x+10, 230); 
      }
 }
