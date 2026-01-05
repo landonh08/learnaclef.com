@@ -214,6 +214,8 @@ closeButton.onclick = function() {
 
     let numValue = halfStepCounter.valueAsNumber;
     pracTranspose = (isNaN(numValue)) ? 0 : numValue;
+
+    (pracType === 0) ? generateNote() : generateNote(true);
     
 
     draw();
