@@ -38,6 +38,37 @@ sharpImg.onload = checkImagesLoaded;
 const ALL_NOTE_NAMES = ["a", "ab", "b", "c", "cd", "d", "de", "e", "f", "fg", "g", "ga"];
 var notesInClefOrder = []; 
 
+const canvas = document.getElementById('score'); 
+const ctx = canvas.getContext('2d'); 
+
+function setCanvasSize() {
+    const minWidthForScale = 650; 
+
+    if (window.innerWidth <= 768) {
+        canvas.width = Math.max(window.innerWidth * 0.9, minWidthForScale);
+        canvas.height = window.innerHeight * 0.4;
+        console.log("small", window.innerWidth);
+    } else if (window.innerWidth < 1920) {
+        canvas.width = Math.max(window.innerWidth * 0.7, minWidthForScale);
+        canvas.height = window.innerHeight * 0.4;
+        console.log("medium", window.innerWidth);
+    } else {
+        canvas.width = Math.max(window.innerWidth / 2, minWidthForScale); 
+        canvas.height = window.innerHeight / 2;
+        console.log("large", window.innerWidth); 
+    }
+}
+
+setCanvasSize();
+
+// Update your event listener to use the function
+window.addEventListener('resize', function() { 
+    setCanvasSize();
+    console.log(canvas.width, canvas.height);
+    draw(); 
+});
+
+
 // ik, hardcoded positions are bad :( but it works at all canvas sizes :)
 const clefInfo = new Map([
     [0, { img: trebleImg, x: 50, y: 35, width: 100, height: 200 }],
@@ -56,17 +87,6 @@ let pracTranspose = 0;
 var note; 
 var notesOnScreen = []
 var key;
-
-const canvas = document.getElementById('score'); 
-const ctx = canvas.getContext('2d'); 
-canvas.width = window.innerWidth / 2; 
-canvas.height = window.innerHeight / 2; 
-
-window.addEventListener('resize', function() { 
-    canvas.width = window.innerWidth / 2; 
-    canvas.height = window.innerHeight / 2; 
-    draw(); 
-}); 
 
 ctx.font = "50px Roboto"; 
 ctx.fillText("Loading...", 80, 80); 
